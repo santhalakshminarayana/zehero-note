@@ -9,6 +9,9 @@ import '../theme/note_colors.dart';
 const c1 = 0xFFFDFFFC, c2 = 0xFFFF595E, c3 = 0xFF374B4A, c4 = 0xFF00B1CC, c5 = 0xFFFFD65C, c6 = 0xFFB9CACA,
 			c7 = 0x80374B4A, c8 = 0x3300B1CC, c9 = 0xCCFF595E;
 
+/*
+* Read all notes stored in database and sort them based on name 
+*/
 Future<List<Map<String, dynamic>>> readDatabase() async {
 	try {
 	  NotesDatabase notesDb = NotesDatabase();
@@ -25,20 +28,23 @@ Future<List<Map<String, dynamic>>> readDatabase() async {
 	}
 }
 
+// Home Screen
 class Home extends StatefulWidget{
 	@override
 	_Home createState() => _Home();
 }
 
 class _Home extends State<Home> {
-	//Future _readDatabase;
+	// Read Database and get Notes
 	List<Map<String, dynamic>> notesData;
 	List<int> selectedNoteIds = [];
 
+	// Render the screen and update changes
 	void afterNavigatorPop() {
 		setState(() {});
 	}
 
+	// Long Press handler to display bottom bar
 	void handleNoteListLongPress(int id) {
 		setState(() {
 			if (selectedNoteIds.contains(id) == false) {
@@ -47,6 +53,7 @@ class _Home extends State<Home> {
 		});
 	}
 
+	// Remove selection after long press
 	void handleNoteListTapAfterSelect(int id) {
 		setState(() {
 			if (selectedNoteIds.contains(id) == true) {
@@ -55,6 +62,7 @@ class _Home extends State<Home> {
 		});
 	}
 
+	// Delete Note/Notes
 	void handleDelete() async {
 		try {
 			NotesDatabase notesDb = NotesDatabase();
@@ -72,6 +80,7 @@ class _Home extends State<Home> {
 		}
 	}
 
+	// Share Note/Notes
 	void handleShare() async {
 		String content = '';
 		try {
@@ -96,7 +105,6 @@ class _Home extends State<Home> {
 
 	@override
 	void initState() {
-		//_readDatabase = readDatabase();
 		super.initState();
 	}
 
@@ -229,6 +237,7 @@ class _Home extends State<Home> {
 	}
 }
 
+// Display all notes
 class AllNoteLists extends StatelessWidget {
 	final data;
 	final selectedNoteIds;
@@ -263,6 +272,8 @@ class AllNoteLists extends StatelessWidget {
 	}
 }
 
+
+// A Note view showing title, first line of note and color
 class DisplayNotes extends StatelessWidget {
 	final notesData;
 	final selectedNoteIds;
@@ -402,6 +413,8 @@ class DisplayNotes extends StatelessWidget {
 	}
 }
 
+
+// BottomAction bar contais options like Delete, Share...
 class BottomActionBar extends StatelessWidget {
 	final VoidCallback handleDelete;
 	final VoidCallback handleShare;

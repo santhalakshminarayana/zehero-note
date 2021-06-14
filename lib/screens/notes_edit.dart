@@ -355,6 +355,7 @@ class _NoteEntry extends State<NoteEntry> with WidgetsBindingObserver {
 	}
 }
 
+// A PopUp Widget shows different colors
 class ColorPalette extends StatelessWidget {
 	final parentContext;
 
@@ -396,7 +397,7 @@ class ColorPalette extends StatelessWidget {
 	}
 }
 
-
+// More Menu to display various options like Color, Sort, Share...
 class appBarPopMenu extends StatelessWidget {
 	final popupMenuButtonItems = const {
 		1: const {'name': 'Color', 'icon': Icons.color_lens},
