@@ -27,7 +27,7 @@ class _NotesEdit extends State<NotesEdit> {
 	void onSelectAppBarPopupMenuItem(BuildContext currentContext, String optionName) {
 		switch (optionName) {
 			case 'Color':
-				handlePopupMenuItemColor(currentContext);
+				handleColor(currentContext);
 				break;
 			case 'Sort by A-Z':
 				handleNoteSort('ascending');
@@ -44,7 +44,7 @@ class _NotesEdit extends State<NotesEdit> {
 		}
 	}
 
-	void handlePopupMenuItemColor(currentContext) {
+	void handleColor(currentContext) {
 		showDialog(
 			context: currentContext,
 			builder: (context) => ColorPalette(
@@ -139,7 +139,6 @@ class _NotesEdit extends State<NotesEdit> {
 				setState(() {
 					noteTitle = title;
 				});
-				//_titleTextController.text = title;
 			}
 		}
 		// Save New note
@@ -220,7 +219,7 @@ class _NotesEdit extends State<NotesEdit> {
 
 					title: NoteTitleEntry(_titleTextController),
 
-					// sctions
+					// actions
 					actions: [
 						appBarPopMenu(
 							parentContext: context,
